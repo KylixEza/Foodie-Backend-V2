@@ -50,7 +50,7 @@ class UserRouteLocation {
 	data class UserIsFavoriteRoute(val uid: String, val menuId: String)
 	
 	@Location(POST_FAVORITE)
-	data class FavoriteAddRoute(val uid: String)
+	data class FavoriteAddRoute(val uid: String, val menuId: String)
 	
 	@Location(DELETE_FAVORITE)
 	data class FavoriteDeleteRoute(val uid: String)
