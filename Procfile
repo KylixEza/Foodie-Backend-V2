@@ -1,0 +1,1 @@
+web: build/install/foodie-backend-v2/bin/foodie-backend-v2
