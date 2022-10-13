@@ -25,7 +25,7 @@ sealed class VoucherRouteLocation {
 	data class VoucherOwnGetListRoute(val uid: String)
 	
 	@Location(CLAIM_VOUCHER)
-	data class VoucherClaimRoute(val voucherId: String)
+	data class VoucherClaimRoute(val uid: String, val voucherId: String)
 	
 	@Location(DETAIL_VOUCHER)
 	data class VoucherGetDetailRoute(val voucherId: String)
