@@ -23,6 +23,7 @@ class DatabaseFactory(
 			)
 			tables.forEach { table ->
 				SchemaUtils.create(table)
+				SchemaUtils.createMissingTablesAndColumns(table)
 			}
 		}
 	}

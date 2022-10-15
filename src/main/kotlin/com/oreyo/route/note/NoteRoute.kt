@@ -30,13 +30,21 @@ class NoteRoute(
 	
 	private fun Route.postNewNote() {
 		post<NoteRouteLocation.NotePostRoute> {
+
+			val uid = try {
+				call.parameters["uid"]
+			} catch (e: Exception) {
+				call.generalException(e)
+				return@post
+			} ?: ""
+
 			val body = try {
 				call.receive<NoteBody>()
 			} catch (e: Exception) {
 				call.generalException(e)
 				return@post
 			}
-			call.generalSuccess { repository.addNewNote(body) }
+			call.generalSuccess { repository.addNewNote(uid, body) }
 		}
 	}
 	

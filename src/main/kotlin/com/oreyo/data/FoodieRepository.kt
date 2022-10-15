@@ -535,7 +535,7 @@ class FoodieRepository(
 		)
 	}
 	
-	override suspend fun addNewNote(body: NoteBody) {
+	override suspend fun addNewNote(uid: String, body: NoteBody) {
 		var caloriesPredict = 0
 		CoroutineScope(Dispatchers.IO).launch {
 			caloriesPredict = getCaloriesPrediction(body).calories
@@ -552,7 +552,7 @@ class FoodieRepository(
 		
 		dbFactory.dbQuery {
 			NoteTable.insert { table ->
-				table[uid] = body.uid
+				table[this.uid] = uid
 				table[noteId] = "NOTE${NanoIdUtils.randomNanoId()}"
 				table[category] = body.category
 				table[calories] = caloriesPredict * body.portion

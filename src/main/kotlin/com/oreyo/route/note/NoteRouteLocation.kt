@@ -10,7 +10,7 @@ sealed class NoteRouteLocation {
 		//POST
 		const val CALORIES_PREDICTION = "/calories/predict"
 		//POST
-		const val ADD_NOTE = NOTE
+		const val ADD_NOTE = "$SELECTED_USER/note"
 		//GET
 		const val GET_NOTE = "$SELECTED_USER/note"
 	}
