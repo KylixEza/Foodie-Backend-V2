@@ -67,7 +67,7 @@ interface IFoodieRepository {
 	suspend fun claimVoucher(uid: String, voucherId: String) //clear
 	suspend fun getVoucherUser(uid: String): List<VoucherUserResponse> //clear
 	suspend fun getDetailVoucher(voucherId: String): VoucherResponse //clear
-	suspend fun getCaloriesPrediction(body: NoteBody): PredictionResponse //clear
+	suspend fun getCaloriesPrediction(food: String): PredictionResponse //clear
 	suspend fun addNewNote(uid: String, body: NoteBody) //clear
 	suspend fun getAllNoteByUser(uid: String): List<NoteResponse> //clear
 	suspend fun addNewChallenge(body: ChallengeBody) //clear

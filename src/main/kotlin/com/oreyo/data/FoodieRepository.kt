@@ -517,7 +517,7 @@ class FoodieRepository(
 		}
 	}.first()
 	
-	override suspend fun getCaloriesPrediction(body: NoteBody): PredictionResponse {
+	override suspend fun getCaloriesPrediction(food: String): PredictionResponse {
 		val menus = dbFactory.dbQuery {
 			MenuTable.selectAll().mapNotNull { Mapper.mapRowToPredictionResponse(it) }
 		}
@@ -527,9 +527,9 @@ class FoodieRepository(
 			categorySelector = { it.calories }
 		)
 		
-		val predictResult = nbc.predictWithProbability(body.food.splitWords().toSet())
+		val predictResult = nbc.predictWithProbability(food.splitWords().toSet())
 		return PredictionResponse(
-			body.food,
+			food,
 			predictResult?.category ?: -1,
 			predictResult?.probability ?: -1.0
 		)
@@ -538,7 +538,7 @@ class FoodieRepository(
 	override suspend fun addNewNote(uid: String, body: NoteBody) {
 		var caloriesPredict = 0
 		CoroutineScope(Dispatchers.IO).launch {
-			caloriesPredict = getCaloriesPrediction(body).calories
+			caloriesPredict = getCaloriesPrediction(body.food).calories
 		}.join()
 		
 		val dateObj = Date()

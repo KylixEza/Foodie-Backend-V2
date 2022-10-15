@@ -17,14 +17,15 @@ class NoteRoute(
 ) {
 	
 	private fun Route.postCaloriesPrediction() {
-		post<NoteRouteLocation.CaloriesPredictionPostRoute> {
-			val body = try {
-				call.receive<NoteBody>()
+		get<NoteRouteLocation.CaloriesPredictionPostRoute> {
+			val food = try {
+				call.parameters["food"]
 			} catch (e: Exception) {
 				call.generalException(e)
-				return@post
-			}
-			call.generalSuccess { repository.getCaloriesPrediction(body) }
+				return@get
+			} ?: ""
+
+			call.generalSuccess { repository.getCaloriesPrediction(food) }
 		}
 	}
 	
