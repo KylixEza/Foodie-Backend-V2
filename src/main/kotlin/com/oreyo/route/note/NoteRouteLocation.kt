@@ -6,7 +6,6 @@ import io.ktor.server.locations.*
 @KtorExperimentalLocationsAPI
 sealed class NoteRouteLocation {
 	companion object {
-		const val NOTE = "/note"
 		//POST
 		const val CALORIES_PREDICTION = "/calories/predict"
 		//POST
@@ -19,7 +18,7 @@ sealed class NoteRouteLocation {
 	class CaloriesPredictionPostRoute
 	
 	@Location(ADD_NOTE)
-	class NotePostRoute
+	data class NotePostRoute(val uid: String)
 	
 	@Location(GET_NOTE)
 	data class NoteGetListRoute(val uid: String)
