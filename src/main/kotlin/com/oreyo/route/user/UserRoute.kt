@@ -81,7 +81,7 @@ class UserRoute(
 				return@put
 			}
 
-			call.generalSuccess { repository.updateUser(uid!!, body) }
+			call.generalSuccess { repository.updateUserXp(uid!!, body) }
 		}
 	}
 	

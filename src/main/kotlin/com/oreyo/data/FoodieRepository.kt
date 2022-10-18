@@ -75,7 +75,7 @@ class FoodieRepository(
 		}
 	}
 
-	override suspend fun updateUserXp(uid: String, body: UserBody) {
+	override suspend fun updateUserXp(uid: String, body: UserBody): Unit = dbFactory.dbQuery {
 		UserTable.update(
 			where = { UserTable.uid.eq(uid) }
 		) { table ->
