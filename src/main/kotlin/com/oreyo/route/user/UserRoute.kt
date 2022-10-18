@@ -64,6 +64,26 @@ class UserRoute(
 			call.generalSuccess { repository.updateUser(uid!!, body) }
 		}
 	}
+
+	private fun Route.updateUserXp() {
+		put<UserRouteLocation.UserUpdateXpRoute> {
+			val uid = try {
+				call.parameters["uid"]
+			} catch (e: Exception) {
+				call.generalException(e)
+				return@put
+			}
+
+			val body = try {
+				call.receive<UserBody>()
+			} catch (e: Exception) {
+				call.generalException(e)
+				return@put
+			}
+
+			call.generalSuccess { repository.updateUser(uid!!, body) }
+		}
+	}
 	
 	private fun Route.isFavorite() {
 		get<UserRouteLocation.UserIsFavoriteRoute> {
@@ -246,6 +266,7 @@ class UserRoute(
 			addNewUser()
 			getDetailUser()
 			updateUser()
+			updateUserXp()
 			isFavorite()
 			addNewFavoriteByUser()
 			deleteFavoriteByUser()

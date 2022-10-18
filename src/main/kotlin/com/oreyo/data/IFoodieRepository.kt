@@ -32,6 +32,7 @@ interface IFoodieRepository {
 	suspend fun addUser(body: UserBody) //clear
 	suspend fun getDetailUser(uid: String): UserResponse //clear
 	suspend fun updateUser(uid: String, body: UserBody) //clear
+	suspend fun updateUserXp(uid: String, body: UserBody)
 	suspend fun getLeaderboard(): List<LeaderboardResponse>  //clear
 	suspend fun getUserRank(uid: String): LeaderboardResponse //clear
 	suspend fun isFavorite(uid: String, menuId: String): Boolean //clear

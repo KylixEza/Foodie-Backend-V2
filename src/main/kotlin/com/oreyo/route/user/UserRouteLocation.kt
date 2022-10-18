@@ -13,6 +13,8 @@ class UserRouteLocation {
 		const val DETAIL_USER = SELECTED_USER
 		//UPDATE
 		const val UPDATE_USER = SELECTED_USER
+		//UPDATE
+		const val UPDATE_USER_XP = "$SELECTED_USER/xp"
 		//GET
 		const val IS_FAVORITE = "$SELECTED_USER/favorite/{menuId}"
 		//POST
@@ -45,6 +47,9 @@ class UserRouteLocation {
 	
 	@Location(UPDATE_USER)
 	data class UserUpdateRoute(val uid: String)
+
+	@Location(UPDATE_USER_XP)
+	data class UserUpdateXpRoute(val uid: String)
 	
 	@Location(IS_FAVORITE)
 	data class UserIsFavoriteRoute(val uid: String, val menuId: String)

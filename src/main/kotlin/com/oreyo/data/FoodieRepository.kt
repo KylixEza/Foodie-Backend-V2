@@ -68,15 +68,21 @@ class FoodieRepository(
 			) { table ->
 				table[address] = body.address
 				table[avatar] = body.avatar
-				table[foodieWallet] = body.foodieWallet
 				table[email] = body.email
 				table[name] = body.name
 				table[phoneNumber] = body.phoneNumber
-				table[xp] = body.xp
 			}
 		}
 	}
-	
+
+	override suspend fun updateUserXp(uid: String, body: UserBody) {
+		UserTable.update(
+			where = { UserTable.uid.eq(uid) }
+		) { table ->
+			table[xp] = body.xp
+		}
+	}
+
 	override suspend fun getLeaderboard() = dbFactory.dbQuery {
 
 		val leaderboard = UserTable.selectAll()
